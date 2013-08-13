@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.cache import cache
+from django.utils.encoding import python_2_unicode_compatible
 
 from flatblocks.settings import CACHE_PREFIX
 
@@ -27,8 +28,9 @@ class FlatBlock(models.Model):
     raw_content = None
     raw_header = None
 
-    def __unicode__(self):
-        return u"%s" % (self.slug,)
+    @python_2_unicode_compatible
+    def __str__(self):
+        return self.slug
 
     def save(self, *args, **kwargs):
         super(FlatBlock, self).save(*args, **kwargs)
