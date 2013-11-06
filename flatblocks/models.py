@@ -6,6 +6,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from flatblocks.settings import CACHE_PREFIX
 
 
+@python_2_unicode_compatible
 class FlatBlock(models.Model):
     """
     Think of a flatblock as a flatpage but for just part of a site. It's
@@ -28,7 +29,6 @@ class FlatBlock(models.Model):
     raw_content = None
     raw_header = None
 
-    @python_2_unicode_compatible
     def __str__(self):
         return self.slug
 
